@@ -1,28 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SelectNum :numbers="numbers"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SelectNum from '@/components/SelectNum'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SelectNum
+  },
+  data () {
+    return {
+      numbers: [2, 3, 4, 5, 6, 7, 8, 9]
+    }
   }
 }
 </script>
 
 <style lang="scss">
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/scaffolding";
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'PT Sans', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+
 </style>

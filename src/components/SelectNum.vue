@@ -1,5 +1,5 @@
 <template>
-  <section class="select">
+  <section class="select" v-if="state === 'select'">
     <div class="container">
       <div class="select__inner">
         <h1 class="select__title">Выбери цифру, для тренировки умножения</h1>
@@ -11,27 +11,22 @@
               :class="{'select__item--active': item.active}"
           >{{ item.value }}</li>
         </ul>
-        <btn
-          text='Я выбрал!'
-          classes="btn--select"
-        />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import Btn from '@/components/Btn'
 
 export default {
   name: 'SelectNum',
-  components: { Btn },
   props: {
-    numbers: Array
+    numbers: Array,
+    state: String
   },
   methods: {
     selectNumber (index) {
-      this.$emit('select', index)
+      this.$emit('select', index, 'expression')
     }
   }
 }
@@ -39,6 +34,7 @@ export default {
 
 <style lang="scss">
 @import "src/assets/styles/variables";
+
 .select__inner {
   display: flex;
   flex-direction: column;

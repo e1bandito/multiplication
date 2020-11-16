@@ -2,17 +2,25 @@
   <div id="app">
     <SelectNum
       :numbers="numbers"
-      v-on:select="isActive"
+      :state="state"
+      v-on:select="getActive"
+    />
+    <Exception
+      :state="state"
+      :current-num="currentNum"
+      :factor="factor"
     />
   </div>
 </template>
 
 <script>
 import SelectNum from '@/components/SelectNum'
+import Exception from '@/components/Expression'
 
 export default {
   name: 'App',
   components: {
+    Exception,
     SelectNum
   },
   data () {
@@ -51,16 +59,25 @@ export default {
           active: false
         }
       ],
-      currentNum: null
+      currentNum: null,
+      factor: 5,
+      state: 'select'
     }
   },
   methods: {
-    isActive (index) {
+    getActive (index, state) {
       this.numbers.forEach((item) => {
         item.active = false
       })
       this.numbers[index].active = true
       this.currentNum = this.numbers[index].value
+      this.setState(state)
+    },
+    setState (state) {
+      this.state = state
+    },
+    getFactor () {
+      return 3
     }
   }
 }
@@ -70,6 +87,7 @@ export default {
 @import "src/assets/styles/variables";
 @import "src/assets/styles/mixins";
 @import "src/assets/styles/scaffolding";
+
 #app {
   font-family: 'PT Sans', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -2,6 +2,7 @@
   <button
     class="btn"
     :class="classes"
+    v-on:click="applyNum"
   >{{ text }}</button>
 </template>
 
@@ -10,10 +11,16 @@ export default {
   name: 'btn',
   props: {
     text: String,
-    classes: String
+    classes: String,
+    numbers: Array
   },
-  data () {
-    return {
+  methods: {
+    applyNum () {
+      this.numbers.forEach((item) => {
+        if (item.active) {
+          this.$emit('setState', 'exception')
+        }
+      })
     }
   }
 }
@@ -21,6 +28,7 @@ export default {
 
 <style lang="scss">
 @import "src/assets/styles/variables";
+
 .btn {
   appearance: none;
   border: none;
@@ -37,4 +45,5 @@ export default {
     background-color: darken($blue, 15%);
   }
 }
+
 </style>

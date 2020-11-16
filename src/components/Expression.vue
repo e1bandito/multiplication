@@ -7,10 +7,10 @@
         <p class="expression__quest">{{ currentNum }} * {{ factor }} = ?</p>
         <h3 class="expression__answers-title">Варианты ответов:</h3>
         <ul class="expression__list">
-          <li class="expression__item">1</li>
-          <li class="expression__item">2</li>
-          <li class="expression__item">3</li>
-          <li class="expression__item">4</li>
+          <li class="expression__item"
+          v-for="(item, index) in answers"
+              :key="index"
+          >{{ item }}</li>
         </ul>
       </div>
     </div>
@@ -23,7 +23,8 @@ export default {
   props: {
     state: String,
     currentNum: Number,
-    factor: Number
+    factor: Number,
+    answers: Array
   }
 }
 </script>

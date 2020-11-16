@@ -5,22 +5,23 @@
       :state="state"
       v-on:select="getActive"
     />
-    <Exception
+    <Expression
       :state="state"
       :current-num="currentNum"
       :factor="factor"
+      :answers="answers"
     />
   </div>
 </template>
 
 <script>
 import SelectNum from '@/components/SelectNum'
-import Exception from '@/components/Expression'
+import Expression from '@/components/Expression'
 
 export default {
   name: 'App',
   components: {
-    Exception,
+    Expression,
     SelectNum
   },
   data () {
@@ -59,12 +60,19 @@ export default {
           active: false
         }
       ],
+      answers: [],
       currentNum: null,
-      factor: 5,
+      factor: null,
       state: 'select'
     }
   },
   methods: {
+    shuffle (arr) {
+      arr.sort(() => Math.random() - 0.5)
+    },
+    getRes (a, b) {
+      return a * b
+    },
     getActive (index, state) {
       this.numbers.forEach((item) => {
         item.active = false
@@ -72,12 +80,31 @@ export default {
       this.numbers[index].active = true
       this.currentNum = this.numbers[index].value
       this.setState(state)
+      this.getFactor()
+      this.getAnswers(this.answers)
     },
     setState (state) {
       this.state = state
     },
+    getRndNum (min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    },
     getFactor () {
-      return 3
+      this.factor = this.getRndNum(1, 10)
+    },
+    getAnswers (arr) {
+      if (this.currentNum !== null) {
+        arr.length = 0
+        const res = this.getRes(this.currentNum, this.factor)
+        arr.push(res)
+        while (arr.length < 4) {
+          const num = this.getRndNum(1, 10) * this.currentNum
+          if (!arr.includes(num)) {
+            arr.push(num)
+          }
+        }
+        this.shuffle(arr)
+      }
     }
   }
 }

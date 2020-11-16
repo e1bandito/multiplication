@@ -1,30 +1,37 @@
 <template>
   <section class="select">
     <div class="container">
-      <h1 class="select__title">Выбери цифру, для тренировки умножения</h1>
-      <ul class="select__list">
-        <li class="select__item"
-        v-for="(item, index) in numbers"
-            :key="index"
-            v-on:click="selectNumber(index, item, $event)"
-        >{{ item }}</li>
-      </ul>
+      <div class="select__inner">
+        <h1 class="select__title">Выбери цифру, для тренировки умножения</h1>
+        <ul class="select__list">
+          <li class="select__item"
+          v-for="(item, index) in numbers"
+              :key="index"
+              v-on:click="selectNumber(index)"
+              :class="{'select__item--active': item.active}"
+          >{{ item.value }}</li>
+        </ul>
+        <btn
+          text='Я выбрал!'
+          classes="btn--select"
+        />
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import Btn from '@/components/Btn'
+
 export default {
   name: 'SelectNum',
+  components: { Btn },
   props: {
     numbers: Array
   },
   methods: {
-    selectNumber (index, item, event) {
-      console.log(index)
-      console.log(item)
-      console.log(event.target)
-      event.target.classList.add('select__item--active')
+    selectNumber (index) {
+      this.$emit('select', index)
     }
   }
 }
@@ -32,6 +39,11 @@ export default {
 
 <style lang="scss">
 @import "src/assets/styles/variables";
+.select__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .select__title {
   font-style: normal;
   font-weight: bold;
@@ -39,12 +51,13 @@ export default {
   line-height: 1.15;
   text-align: center;
   color: $dark-blue;
+  margin: 0 0 75px 0;
 }
 
 .select__list {
   max-width: 525px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 75px;
   list-style: none;
   padding: 0;
   display: grid;
@@ -58,6 +71,7 @@ export default {
   line-height: 1.2;
   text-align: center;
   color: $red;
+  transition: background-color 0.3s, color 0.3s;
 
   &--active {
     background-color: $dark-blue;

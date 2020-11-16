@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <SelectNum :numbers="numbers"/>
+    <SelectNum
+      :numbers="numbers"
+      v-on:select="isActive"
+    />
   </div>
 </template>
 
@@ -14,7 +17,50 @@ export default {
   },
   data () {
     return {
-      numbers: [2, 3, 4, 5, 6, 7, 8, 9]
+      numbers: [
+        {
+          value: 2,
+          active: false
+        },
+        {
+          value: 3,
+          active: false
+        },
+        {
+          value: 4,
+          active: false
+        },
+        {
+          value: 5,
+          active: false
+        },
+        {
+          value: 6,
+          active: false
+        },
+        {
+          value: 7,
+          active: false
+        },
+        {
+          value: 8,
+          active: false
+        },
+        {
+          value: 9,
+          active: false
+        }
+      ],
+      currentNum: null
+    }
+  },
+  methods: {
+    isActive (index) {
+      this.numbers.forEach((item) => {
+        item.active = false
+      })
+      this.numbers[index].active = true
+      this.currentNum = this.numbers[index].value
     }
   }
 }

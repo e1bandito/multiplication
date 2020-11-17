@@ -5,7 +5,7 @@
            class="radio__field visually-hidden"
            :id="'radio-' + index"
            :value="item"
-           @click="getValue(item)"
+           @change="getValue(item)"
     >
     <label :for="'radio-' + index" class="radio__label">{{ item }}</label>
   </div>
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     getValue (item) {
-      console.log(item)
+      this.$emit('getValue', item)
     }
   }
 }

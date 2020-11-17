@@ -10,6 +10,10 @@
       :current-num="currentNum"
       :factor="factor"
       :answers="answers"
+      v-on:sendAnswer="click"
+    />
+    <Result
+      :state="state"
     />
   </div>
 </template>
@@ -18,10 +22,12 @@
 import SelectNum from '@/components/SelectNum'
 import Expression from '@/components/Expression'
 import { getRes, getRndNum, shuffle } from '@/assets/js/functions'
+import Result from '@/Result'
 
 export default {
   name: 'App',
   components: {
+    Result,
     Expression,
     SelectNum
   },
@@ -64,7 +70,7 @@ export default {
       answers: [],
       currentNum: null,
       factor: null,
-      state: 'select',
+      state: 'result',
       counter: 0
     }
   },
@@ -95,6 +101,10 @@ export default {
         }
         shuffle(arr)
       }
+    },
+    click (value) {
+      console.log(value)
+      this.state = 'result'
     }
   }
 }

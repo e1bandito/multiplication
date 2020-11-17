@@ -14,9 +14,15 @@
             <Radio
               :item="item"
               :index="index"
+              v-on:getValue="getRadioValue"
             />
           </li>
         </ul>
+        <Btn
+          text="Я выбрал!"
+          classes="btn--expression"
+          v-on:clickBtn="applyAnswer"
+        />
       </div>
     </div>
   </section>
@@ -25,14 +31,30 @@
 <script>
 
 import Radio from '@/components/Radio'
+import Btn from '@/components/Btn'
 export default {
   name: 'expression',
-  components: { Radio },
+  components: { Btn, Radio },
   props: {
     state: String,
     currentNum: Number,
     factor: Number,
     answers: Array
+  },
+  data () {
+    return {
+      value: null
+    }
+  },
+  methods: {
+    getRadioValue (item) {
+      this.value = item
+    },
+    applyAnswer () {
+      if (this.value !== null) {
+        this.$emit('sendAnswer', this.value)
+      }
+    }
   }
 }
 </script>
@@ -88,7 +110,7 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 0 auto;
+  margin: 0 auto 70px;
   align-items: center;
   justify-content: center;
   text-align: center;

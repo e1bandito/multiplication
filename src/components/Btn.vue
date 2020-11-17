@@ -2,7 +2,7 @@
   <button
     class="btn"
     :class="classes"
-    v-on:click="applyNum"
+    v-on:click="sendClick"
   >{{ text }}</button>
 </template>
 
@@ -15,12 +15,8 @@ export default {
     numbers: Array
   },
   methods: {
-    applyNum () {
-      this.numbers.forEach((item) => {
-        if (item.active) {
-          this.$emit('setState', 'exception')
-        }
-      })
+    sendClick () {
+      this.$emit('clickBtn')
     }
   }
 }

@@ -2,7 +2,6 @@
   <section class="expression" v-if="state === 'expression'">
     <div class="container">
       <div class="expression__inner">
-        <h2 class="expression__title">Умножаем на {{ currentNum }}</h2>
         <p class="expression__text">Сколько получится, если..</p>
         <p class="expression__quest">{{ currentNum }} * {{ factor }} = ?</p>
         <h3 class="expression__answers-title">Варианты ответов:</h3>
@@ -64,7 +63,7 @@ export default {
 @import "src/assets/styles/mixins";
 
 .expression {
-  padding: 70px 0;
+  padding: 30px 0;
 }
 
 .expression__inner {
@@ -73,16 +72,9 @@ export default {
   align-items: center;
 }
 
-.expression__title {
-  color: $dark-blue;
-  font-size: 40px;
-  text-align: center;
-  margin: 0 0 40px 0;
-}
-
 .expression__text {
   color: $grey;
-  margin: 0 0 60px 0;
+  margin: 0 0 30px 0;
   font-size: 30px;
   line-height: 1.5;
   text-align: center;
@@ -93,7 +85,7 @@ export default {
   color: $red;
   font-weight: 700;
   font-size: 100px;
-  margin: 0 0 60px 0;
+  margin: 0 0 30px 0;
 }
 
 .expression__answers-title {

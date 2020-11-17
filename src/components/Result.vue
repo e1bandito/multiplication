@@ -2,7 +2,6 @@
   <section class="result" v-if="state === 'result'">
     <div class="container">
       <div class="result__inner">
-        <h2 class="result__title">Умножаем на {{ currentNum }}</h2>
         <p class="result__text result__text--success" v-if="success">В ТОЧКУ!</p>
         <p class="result__text result__text--error" v-else>МИМО!</p>
         <p class="result__exp-text">правильный ответ:</p>
@@ -46,7 +45,7 @@ export default {
 @import "src/assets/styles/variables";
 
 .result {
-  padding: 70px 0;
+  padding: 30px 0;
 }
 
 .result__inner {
@@ -55,16 +54,9 @@ export default {
   align-items: center;
 }
 
-.result__title {
-  margin: 0 0 60px 0;
-  color: $dark-blue;
-  font-size: 40px;
-  text-align: center;
-}
-
 .result__text {
   color: $grey;
-  margin: 0 0 10px 0;
+  margin: 0;
   font-size: 80px;
   text-align: center;
   font-weight: 700;
@@ -81,7 +73,7 @@ export default {
 .result__exp-text {
   text-align: center;
   color: $grey;
-  margin: 0 0 10px 0;
+  margin: 0;
   font-size: 30px;
   font-weight: 700;
 }
@@ -105,7 +97,7 @@ export default {
 .result__counter-val {
   text-align: center;
   color: $grey;
-  margin: 0 0 50px 0;
+  margin: 0 0 20px 0;
   font-size: 140px;
   font-weight: 700;
 

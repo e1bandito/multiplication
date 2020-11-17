@@ -40,6 +40,22 @@ export default {
   &:hover {
     background-color: darken($blue, 15%);
   }
+
+  &--header {
+    font-size: 18px;
+    padding: 12px 15px;
+    min-width: 200px;
+    background-color: $white;
+    color: $blue;
+    border: 2px solid $blue;
+    transition: background-color 0.3s, color 0.3s;
+    justify-self: end;
+
+    &:hover {
+      background-color: $blue;
+      color: $white;
+    }
+  }
 }
 
 </style>

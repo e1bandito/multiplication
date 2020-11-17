@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <Header
+      :counter="counter"
+      :state="state"
+      :success="success"
+      :current-num="currentNum"
+      v-on:newNumber="newNumber"
+    />
     <SelectNum
       :numbers="numbers"
       :state="state"
@@ -28,11 +35,13 @@
 import SelectNum from '@/components/SelectNum'
 import Expression from '@/components/Expression'
 import { getRes, getRndNum, shuffle } from '@/assets/js/functions'
-import Result from '@/Result'
+import Result from '@/components/Result'
+import Header from '@/components/Header'
 
 export default {
   name: 'App',
   components: {
+    Header,
     Result,
     Expression,
     SelectNum
@@ -95,8 +104,12 @@ export default {
     setState (state) {
       this.state = state
     },
-    getExpression (arr) {
+    getFactor () {
       this.factor = getRndNum(1, 10)
+      return this.factor
+    },
+    getExpression (arr) {
+      this.getFactor()
       if (this.currentNum !== null) {
         arr.length = 0
         const res = getRes(this.currentNum, this.factor)
@@ -124,6 +137,14 @@ export default {
     nextExp () {
       this.setState('expression')
       this.getExpression(this.answers)
+    },
+    newNumber () {
+      this.numbers.forEach((item) => {
+        item.active = false
+      })
+      this.success = undefined
+      this.state = 'select'
+      this.counter = 0
     }
   }
 }

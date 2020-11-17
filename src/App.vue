@@ -10,10 +10,16 @@
       :current-num="currentNum"
       :factor="factor"
       :answers="answers"
-      v-on:sendAnswer="click"
+      v-on:sendAnswer="showResult"
     />
     <Result
       :state="state"
+      :counter="counter"
+      :current-num="currentNum"
+      :factor="factor"
+      :res="res"
+      :success="success"
+      v-on:nextExp="nextExp"
     />
   </div>
 </template>
@@ -70,8 +76,10 @@ export default {
       answers: [],
       currentNum: null,
       factor: null,
-      state: 'result',
-      counter: 0
+      res: null,
+      state: 'select',
+      counter: 0,
+      success: undefined
     }
   },
   methods: {
@@ -102,9 +110,20 @@ export default {
         shuffle(arr)
       }
     },
-    click (value) {
-      console.log(value)
+    showResult (value) {
+      this.res = getRes(this.currentNum, this.factor)
+      if (this.res === value) {
+        this.counter++
+        this.success = true
+      } else {
+        this.counter--
+        this.success = false
+      }
       this.state = 'result'
+    },
+    nextExp () {
+      this.setState('expression')
+      this.getExpression(this.answers)
     }
   }
 }

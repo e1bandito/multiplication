@@ -2,15 +2,19 @@
   <section class="result" v-if="state === 'result'">
     <div class="container">
       <div class="result__inner">
-        <h2 class="result__title">Умножаем на 5</h2>
-        <p class="result__text">В ТОЧКУ!</p>
+        <h2 class="result__title">Умножаем на {{ currentNum }}</h2>
+        <p class="result__text result__text--success" v-if="success">В ТОЧКУ!</p>
+        <p class="result__text result__text--error" v-else>МИМО!</p>
         <p class="result__exp-text">правильный ответ:</p>
-        <p class="result__exp-val">5 * 8 = 40</p>
+        <p class="result__exp-val">{{ currentNum }} * {{ factor }} = {{ res }}</p>
         <p class="result__counter-text">очков набрано:</p>
-        <p class="result__counter-val">35</p>
+        <p class="result__counter-val"
+          :class="counter > 0 ? 'result__counter-val--up' : 'result__counter-val--sub'"
+        >{{ counter }}</p>
         <Btn
           text="Дальше!"
           classes="btn--result"
+          v-on:clickBtn="nextExp"
         />
       </div>
     </div>
@@ -23,7 +27,17 @@ export default {
   name: 'Result',
   components: { Btn },
   props: {
-    state: String
+    state: String,
+    counter: Number,
+    currentNum: Number,
+    factor: Number,
+    res: Number,
+    success: Boolean
+  },
+  methods: {
+    nextExp () {
+      this.$emit('nextExp')
+    }
   }
 }
 </script>

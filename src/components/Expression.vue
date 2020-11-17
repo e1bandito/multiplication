@@ -10,7 +10,12 @@
           <li class="expression__item"
           v-for="(item, index) in answers"
               :key="index"
-          >{{ item }}</li>
+          >
+            <Radio
+              :item="item"
+              :index="index"
+            />
+          </li>
         </ul>
       </div>
     </div>
@@ -18,8 +23,11 @@
 </template>
 
 <script>
+
+import Radio from '@/components/Radio'
 export default {
   name: 'expression',
+  components: { Radio },
   props: {
     state: String,
     currentNum: Number,

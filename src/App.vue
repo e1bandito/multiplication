@@ -17,6 +17,7 @@
 <script>
 import SelectNum from '@/components/SelectNum'
 import Expression from '@/components/Expression'
+import { getRes, getRndNum, shuffle } from '@/assets/js/functions'
 
 export default {
   name: 'App',
@@ -63,16 +64,11 @@ export default {
       answers: [],
       currentNum: null,
       factor: null,
-      state: 'select'
+      state: 'select',
+      counter: 0
     }
   },
   methods: {
-    shuffle (arr) {
-      arr.sort(() => Math.random() - 0.5)
-    },
-    getRes (a, b) {
-      return a * b
-    },
     getActive (index, state) {
       this.numbers.forEach((item) => {
         item.active = false
@@ -80,30 +76,24 @@ export default {
       this.numbers[index].active = true
       this.currentNum = this.numbers[index].value
       this.setState(state)
-      this.getFactor()
-      this.getAnswers(this.answers)
+      this.getExpression(this.answers)
     },
     setState (state) {
       this.state = state
     },
-    getRndNum (min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min)
-    },
-    getFactor () {
-      this.factor = this.getRndNum(1, 10)
-    },
-    getAnswers (arr) {
+    getExpression (arr) {
+      this.factor = getRndNum(1, 10)
       if (this.currentNum !== null) {
         arr.length = 0
-        const res = this.getRes(this.currentNum, this.factor)
+        const res = getRes(this.currentNum, this.factor)
         arr.push(res)
         while (arr.length < 4) {
-          const num = this.getRndNum(1, 10) * this.currentNum
+          const num = getRndNum(1, 10) * this.currentNum
           if (!arr.includes(num)) {
             arr.push(num)
           }
         }
-        this.shuffle(arr)
+        shuffle(arr)
       }
     }
   }

@@ -88,7 +88,8 @@ export default {
       res: null,
       state: 'select',
       counter: 0,
-      success: undefined
+      success: undefined,
+      prevFactors: []
     }
   },
   methods: {
@@ -105,7 +106,18 @@ export default {
       this.state = state
     },
     getFactor () {
-      this.factor = getRndNum(1, 10)
+      const num = getRndNum(1, 10)
+      if (this.prevFactors.includes(num)) {
+        this.getFactor()
+      } else {
+        if (this.prevFactors.length <= 5) {
+          this.prevFactors.unshift(num)
+        } else {
+          this.prevFactors.pop()
+          this.prevFactors.unshift(num)
+        }
+        this.factor = num
+      }
       return this.factor
     },
     getExpression (arr) {

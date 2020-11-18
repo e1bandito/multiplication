@@ -40,11 +40,12 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding-left: 40px;
+  padding-left: 25px;
   font-size: 26px;
   font-weight: 700;
   color: $grey;
   transition: color 0.3s;
+  min-width: 70px;
 
   &::before {
     content: "";

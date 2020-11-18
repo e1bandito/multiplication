@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss">
 @import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
 
 .btn {
   appearance: none;
@@ -50,6 +51,12 @@ export default {
     border: 2px solid $blue;
     transition: background-color 0.3s, color 0.3s;
     justify-self: end;
+
+    @include max(500) {
+      min-width: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
 
     &:hover {
       background-color: $blue;

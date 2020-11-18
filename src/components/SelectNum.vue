@@ -34,6 +34,11 @@ export default {
 
 <style lang="scss">
 @import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.select {
+  padding: 30px 0;
+}
 
 .select__inner {
   display: flex;
@@ -48,17 +53,31 @@ export default {
   text-align: center;
   color: $dark-blue;
   margin: 0 0 75px 0;
+
+  @include max($lg) {
+    font-size: 30px;
+  }
+
+  @include max(500) {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
 }
 
 .select__list {
   max-width: 525px;
   width: 100%;
-  margin: 0 auto 75px;
+  margin: 0 auto;
   list-style: none;
   padding: 0;
   display: grid;
   gap: 40px;
   grid-template-columns: repeat(4, 1fr);
+
+  @include max(500) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
 }
 
 .select__item {
@@ -68,6 +87,10 @@ export default {
   text-align: center;
   color: $red;
   transition: background-color 0.3s, color 0.3s;
+
+  @include max(500) {
+    font-size: 60px;
+  }
 
   &--active {
     background-color: $dark-blue;

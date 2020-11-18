@@ -64,6 +64,10 @@ export default {
 
 .expression {
   padding: 30px 0;
+
+  @include max(500) {
+    padding: 20px 0;
+  }
 }
 
 .expression__inner {
@@ -79,6 +83,11 @@ export default {
   line-height: 1.5;
   text-align: center;
   font-weight: 700;
+
+  @include max(500) {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
 }
 
 .expression__quest {
@@ -86,6 +95,11 @@ export default {
   font-weight: 700;
   font-size: 100px;
   margin: 0 0 30px 0;
+
+  @include max(500) {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
 }
 
 .expression__answers-title {
@@ -94,6 +108,10 @@ export default {
   font-size: 20px;
   text-align: center;
   font-weight: 700;
+
+  @include max(500) {
+    margin-bottom: 20px;
+  }
 }
 
 .expression__list {
@@ -106,6 +124,12 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  @include max(500) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
 }
 
 </style>

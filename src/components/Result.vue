@@ -43,9 +43,14 @@ export default {
 
 <style lang="scss">
 @import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
 
 .result {
   padding: 30px 0;
+
+  @include max(500) {
+    padding: 10px 0;
+  }
 }
 
 .result__inner {
@@ -60,6 +65,11 @@ export default {
   font-size: 80px;
   text-align: center;
   font-weight: 700;
+
+  @include max(500) {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
 
   &--success {
     color: $green;
@@ -76,6 +86,10 @@ export default {
   margin: 0;
   font-size: 30px;
   font-weight: 700;
+
+  @include max(500) {
+    font-size: 20px;
+  }
 }
 
 .result__exp-val {
@@ -84,6 +98,11 @@ export default {
   margin: 0 0 30px 0;
   font-size: 50px;
   font-weight: 700;
+
+  @include max(500) {
+    margin-bottom: 10px;
+    font-size: 36px;
+  }
 }
 
 .result__counter-text {
@@ -100,6 +119,11 @@ export default {
   margin: 0 0 20px 0;
   font-size: 140px;
   font-weight: 700;
+
+  @include max(500) {
+    margin-bottom: 20px;
+    font-size: 50px;
+  }
 
   &--sub {
     color: $red;

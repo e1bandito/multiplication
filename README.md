@@ -1,24 +1,15 @@
 # multiplication
 
-## Project setup
+Небольшое приложение для тренировки умножения. Написано для сына второклассника.
+
+## Установка
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Используемые технологии
 
-### Compiles and minifies for production
-```
-npm run build
-```
+vue.js
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### gh-pages
+[multiplication](https://e1bandito.github.io/multiplication/)
